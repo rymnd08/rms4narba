@@ -1,22 +1,15 @@
 @include('partials.header')
 @include('partials.wrapper')
 
-<x-page-header>
-    Add Rabbit
-</x-page-header>
+<x-page-header header="Add rabbit" />
 
 <form action="{{ route('rabbit-profile.store') }}" method="POST" enctype="multipart/form-data">
 
     @csrf
     @method('post')
     
-    @if (session('status'))
-        <div class="alert {{session('alert')}} alert-dismissible fade show" role="alert">
-            {{session('status')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+    @if (session()->has('message'))
+        <x-popup :type="session('type')" message="{{ session('message') }}" />
     @endif
         
     <div class="card">

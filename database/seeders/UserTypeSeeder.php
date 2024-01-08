@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Breed;
+use App\Models\UserType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BreedSeeder extends Seeder
+class UserTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,7 @@ class BreedSeeder extends Seeder
      */
     public function run()
     {
-        Breed::factory(25)->create();
+        UserType::factory(3)->create();
+        
     }
 }

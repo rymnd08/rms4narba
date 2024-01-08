@@ -17,7 +17,15 @@ class BreedFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'breed' => fake()->randomElement([
+                "Holland Lop",
+                "Flemish Giant",
+                "Mini Rex",
+                "Netherland Dwarf",
+                "Lionhead"
+              ]),
+              'type_id' => fake()->randomElement([1,2]),
+              'description' => fake()->paragraph(1),
         ];
     }
 }

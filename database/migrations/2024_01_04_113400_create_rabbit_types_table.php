@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::create('rabbits', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->timestamps();
-        // });
+        Schema::create('rabbit_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('rabbit_type');
+            $table->text('description');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rabbits');
+        Schema::dropIfExists('rabbit_types');
     }
 };

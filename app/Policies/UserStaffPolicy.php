@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Rabbit;
 use App\Models\User;
+use App\Models\UserStaff;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class RabbitPolicy
+class UserStaffPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class RabbitPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Rabbit  $rabbit
+     * @param  \App\Models\UserStaff  $userStaff
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Rabbit $rabbit)
+    public function view(User $user, UserStaff $userStaff)
     {
         //
     }
@@ -48,10 +48,10 @@ class RabbitPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Rabbit  $rabbit
+     * @param  \App\Models\UserStaff  $userStaff
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Rabbit $rabbit)
+    public function update(User $user, UserStaff $userStaff)
     {
         //
     }
@@ -60,10 +60,10 @@ class RabbitPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Rabbit  $rabbit
+     * @param  \App\Models\UserStaff  $userStaff
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Rabbit $rabbit)
+    public function delete(User $user, UserStaff $userStaff)
     {
         //
     }
@@ -72,10 +72,10 @@ class RabbitPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Rabbit  $rabbit
+     * @param  \App\Models\UserStaff  $userStaff
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Rabbit $rabbit)
+    public function restore(User $user, UserStaff $userStaff)
     {
         //
     }
@@ -84,10 +84,10 @@ class RabbitPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Rabbit  $rabbit
+     * @param  \App\Models\UserStaff  $userStaff
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Rabbit $rabbit)
+    public function forceDelete(User $user, UserStaff $userStaff)
     {
         //
     }

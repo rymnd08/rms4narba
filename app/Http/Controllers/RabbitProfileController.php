@@ -39,14 +39,14 @@ class RabbitProfileController extends Controller
     {
         $delete = RabbitProfile::destroy($id);
         if($delete){
-            $status = 'Rabbit delete successfully';
-            $alert = 'alert-success';
+            $message = 'Rabbit delete successfully';
+            $type = 'success';
         }else{
-            $status = 'Rabbit delete successfully';
-            $alert = 'alert-danger';
+            $message = 'Rabbit delete successfully';
+            $type = 'danger';
         }
         
-        return redirect('/member/rabbit-profile')->with('status', $status)->with('alert', $alert);
+        return redirect('/member/rabbit-profile')->with('message', $message)->with('type', $type);
     }
 
 
@@ -55,13 +55,13 @@ class RabbitProfileController extends Controller
     {
         $create = RabbitProfile::create($request->all());
         if($create){
-            $status = 'Rabbit added successfully!';
-            $alert = 'alert-success';
+            $message = 'Rabbit added successfully!';
+            $type = 'success';
         }else{
-            $alert = 'alert-danger';
-            $status = 'Rabbit add failed!';
+            $type = 'danger';
+            $message = 'Rabbit add failed!';
         }
-        return back()->with('alert', $alert)->with('status', $status);
+        return back()->with('type', $type)->with('message', $message);
 
     }
     // public function update(UpdateRabbitProfileRequest $request, RabbitProfile $rabbitProfile)

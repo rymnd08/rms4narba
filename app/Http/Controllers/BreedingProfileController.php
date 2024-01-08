@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Breed;
-use App\Http\Requests\StoreBreedRequest;
-use App\Http\Requests\UpdateBreedRequest;
+use App\Models\BreedingProfile;
+use App\Http\Requests\StoreBreedingProfileRequest;
+use App\Http\Requests\UpdateBreedingProfileRequest;
 
-class BreedController extends Controller
+class BreedingProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class BreedController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBreedRequest  $request
+     * @param  \App\Http\Requests\StoreBreedingProfileRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBreedRequest $request)
+    public function store(StoreBreedingProfileRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class BreedController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Breed  $breed
+     * @param  \App\Models\BreedingProfile  $breedingProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(Breed $breed)
+    public function show(BreedingProfile $breedingProfile)
     {
         //
     }
@@ -53,34 +53,33 @@ class BreedController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Breed  $breed
+     * @param  \App\Models\BreedingProfile  $breedingProfile
      * @return \Illuminate\Http\Response
      */
-    public function edit(Breed $breed)
+    public function edit(BreedingProfile $breedingProfile)
     {
-        dd($breed->rabbit);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBreedRequest  $request
-     * @param  \App\Models\Breed  $breed
+     * @param  \App\Http\Requests\UpdateBreedingProfileRequest  $request
+     * @param  \App\Models\BreedingProfile  $breedingProfile
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBreedRequest $request, Breed $breed)
+    public function update(UpdateBreedingProfileRequest $request, BreedingProfile $breedingProfile)
     {
         //
-        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Breed  $breed
+     * @param  \App\Models\BreedingProfile  $breedingProfile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Breed $breed)
+    public function destroy(BreedingProfile $breedingProfile)
     {
         //
     }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Breed;
-use App\Http\Requests\StoreBreedRequest;
-use App\Http\Requests\UpdateBreedRequest;
+use App\Models\RabbitType;
+use App\Http\Requests\StoreRabbitTypeRequest;
+use App\Http\Requests\UpdateRabbitTypeRequest;
 
-class BreedController extends Controller
+class RabbitTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class BreedController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBreedRequest  $request
+     * @param  \App\Http\Requests\StoreRabbitTypeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBreedRequest $request)
+    public function store(StoreRabbitTypeRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class BreedController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Breed  $breed
+     * @param  \App\Models\RabbitType  $rabbitType
      * @return \Illuminate\Http\Response
      */
-    public function show(Breed $breed)
+    public function show(RabbitType $rabbitType)
     {
         //
     }
@@ -53,34 +53,33 @@ class BreedController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Breed  $breed
+     * @param  \App\Models\RabbitType  $rabbitType
      * @return \Illuminate\Http\Response
      */
-    public function edit(Breed $breed)
+    public function edit(RabbitType $rabbitType)
     {
-        dd($breed->rabbit);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBreedRequest  $request
-     * @param  \App\Models\Breed  $breed
+     * @param  \App\Http\Requests\UpdateRabbitTypeRequest  $request
+     * @param  \App\Models\RabbitType  $rabbitType
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBreedRequest $request, Breed $breed)
+    public function update(UpdateRabbitTypeRequest $request, RabbitType $rabbitType)
     {
         //
-        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Breed  $breed
+     * @param  \App\Models\RabbitType  $rabbitType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Breed $breed)
+    public function destroy(RabbitType $rabbitType)
     {
         //
     }

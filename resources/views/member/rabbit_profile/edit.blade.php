@@ -1,9 +1,7 @@
 @include('partials.header')
 @include('partials.wrapper')
 
-    <x-page-header>
-        Update Rabbit
-    </x-page-header>
+    <x-page-header header="Update Rabbit" />
 
     {{$id}}
 

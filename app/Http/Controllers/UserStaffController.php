@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rabbit;
-use App\Http\Requests\StoreRabbitRequest;
-use App\Http\Requests\UpdateRabbitRequest;
+use App\Models\UserStaff;
+use App\Http\Requests\StoreUserStaffRequest;
+use App\Http\Requests\UpdateUserStaffRequest;
 
-class RabbitController extends Controller
+class UserStaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class RabbitController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreRabbitRequest  $request
+     * @param  \App\Http\Requests\StoreUserStaffRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRabbitRequest $request)
+    public function store(StoreUserStaffRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class RabbitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Rabbit  $rabbit
+     * @param  \App\Models\UserStaff  $userStaff
      * @return \Illuminate\Http\Response
      */
-    public function show(Rabbit $rabbit)
+    public function show(UserStaff $userStaff)
     {
         //
     }
@@ -53,10 +53,10 @@ class RabbitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Rabbit  $rabbit
+     * @param  \App\Models\UserStaff  $userStaff
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rabbit $rabbit)
+    public function edit(UserStaff $userStaff)
     {
         //
     }
@@ -64,11 +64,11 @@ class RabbitController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateRabbitRequest  $request
-     * @param  \App\Models\Rabbit  $rabbit
+     * @param  \App\Http\Requests\UpdateUserStaffRequest  $request
+     * @param  \App\Models\UserStaff  $userStaff
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRabbitRequest $request, Rabbit $rabbit)
+    public function update(UpdateUserStaffRequest $request, UserStaff $userStaff)
     {
         //
     }
@@ -76,10 +76,10 @@ class RabbitController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rabbit  $rabbit
+     * @param  \App\Models\UserStaff  $userStaff
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rabbit $rabbit)
+    public function destroy(UserStaff $userStaff)
     {
         //
     }

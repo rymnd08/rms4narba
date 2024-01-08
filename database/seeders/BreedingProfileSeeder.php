@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\BreedingProfile;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RabbitSeeder extends Seeder
+class BreedingProfileSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,6 @@ class RabbitSeeder extends Seeder
      */
     public function run()
     {
-        //
+        BreedingProfile::factory(25)->create();
     }
 }

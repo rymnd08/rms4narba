@@ -23,9 +23,6 @@ class UserInfoFactory extends Factory
             'last_name' => fake()->lastName(),
             'gender' => fake()->randomElement(['Male', 'Female', 'Others']),
             'address' => fake()->address(),
-            'farm_name' => fake()->company(),
-            'farm_location' => fake()->address(),
-            'owned_rabbits' => 'Angora, LionHead, New Zealand',
             'image' => fake()->imageUrl()
         ];
 

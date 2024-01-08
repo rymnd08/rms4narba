@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Breed;
+use App\Models\RabbitType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BreedSeeder extends Seeder
+class RabbitTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class BreedSeeder extends Seeder
      */
     public function run()
     {
-        Breed::factory(25)->create();
+        RabbitType::factory(2)->create();
     }
 }

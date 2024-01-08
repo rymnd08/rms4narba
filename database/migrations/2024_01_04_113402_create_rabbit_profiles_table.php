@@ -12,24 +12,26 @@ return new class extends Migration
      * @return void
      */
     public function up()
+    
     {
         Schema::create('rabbit_profiles', function (Blueprint $table) {
-            $table->id('rabbit_id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->id();
+            $table->unsignedBigInteger('farm_id')->nullable();
             $table->string('rabbit_code');
             $table->string('rabbit_name');
             $table->string('cage_number');
             $table->string('sex');
-            $table->string('type');
-            $table->string('breed');
+            $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('breed_id');
             $table->string('color');
             $table->date('birthdate');
             $table->string('rabbit_image')->nullable();
             $table->text('description');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-
+            $table->foreign('type_id')->references('id')->on('rabbit_types');
+            $table->foreign('breed_id')->references('id')->on('breeds');
+            $table->foreign('farm_id')->references('id')->on('farms')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

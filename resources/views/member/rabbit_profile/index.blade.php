@@ -2,17 +2,10 @@
 @include('partials.wrapper')
     
     
-    <x-page-header>
-        Rabbit Profiles
-    </x-page-header>
+    <x-page-header header="Rabbit Profiles" />
 
-    @if (session('status'))
-        <div class="alert {{session('alert')}} alert-dismissible fade show" role="alert">
-            {{session('status')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+    @if (session()->has('message'))
+        <x-popup :type="session('type')" :message="session('message')" />
     @endif
     
     <x-table>
@@ -41,14 +34,12 @@
                     </td>
                     <td>
                         <div class="d-flex flex-nowrap" style="gap: .25rem">
-                            <a href="{{ url('member/rabbit-profile', ['id' => $rp->rabbit_id]) }}" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i></a>
-                            <a href="{{ url('member/rabbit-profile/edit', ['id' => $rp->rabbit_id]) }}" class="btn btn-outline-success btn-sm"><i class="bi bi-pencil"></i></a>
+                            <a href="{{ url('member/rabbit-profile', ['id' => $rp->id]) }}" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i></a>
+                            <a href="{{ route('breed.edit') }}" class="btn btn-outline-success btn-sm"><i class="bi bi-pencil"></i></a>
 
-                            <x-delete-modal>
-                                <x-slot:title>Delete rabbit</x-slot:title>
+                            <x-delete-modal title="Confirm delete" body="Are you sure you?">
                                 <x-slot:form>
-                                    <!-- deleting the rabbit  -->
-                                    <form action="{{ route('rabbit-profile.destroy', ['id' => $rp->rabbit_id]) }}" method="post">
+                                    <form action="{{ route('rabbit-profile.destroy', ['id' => $rp->id]) }}" method="post">
                                         @csrf
                                         @method('delete')
 

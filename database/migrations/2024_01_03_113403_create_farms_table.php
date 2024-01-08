@@ -13,22 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_infos', function (Blueprint $table) {
-            $table->id('user_info_id');
+        Schema::create('farms', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('first_name');
-            $table->string('middle_name');
-            $table->string('last_name');
-            $table->string('gender');
-            $table->string('address');
             $table->string('farm_name');
             $table->string('farm_location');
+            $table->string('phone_1')->nullable();
+            $table->string('phone_2');
+            $table->string('email')->unique();
+            $table->string('other_contact');
             $table->string('owned_rabbits');
-            $table->string('image');
             $table->timestamps();
             
-            $table->foreign('user_id')->references('user_id')->on('users');
-
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -39,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_infos');
+        Schema::dropIfExists('farms');
     }
 };
