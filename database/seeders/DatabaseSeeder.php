@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             UserInfoSeeder::class,
             FarmSeeder::class,
-            UserStaffSeeder::class,
+            FarmUserSeeder::class,
             RabbitTypeSeeder::class,
             BreedSeeder::class,
             RabbitProfileSeeder::class,

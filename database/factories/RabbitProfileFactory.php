@@ -17,13 +17,13 @@ class RabbitProfileFactory extends Factory
     public function definition()
     {
         return [
-            'farm_id' => fake()->numberBetween(1, 10),
+            'farm_id' => fake()->randomElement([1,2]),
             'rabbit_code' => fake()->randomLetter() .'-'. fake()->numberBetween(100, 1000),
             'rabbit_name' => fake()->name(),
             'cage_number' => fake()->numberBetween(1, 100),
             'sex' => fake()->randomElement(['Buck', 'Doe']),
             'type_id' => fake()->randomElement([1,2]),
-            'color' => fake()->colorName(),
+            'color' => fake()->randomElement(['Pink', 'Red']),
             'breed_id' => fake()->numberBetween(1,10),
             'birthdate' => fake()->date('Y-m-d'),
             'rabbit_image' =>  'https://api.dicebear.com/7.x/initials/svg?seed='.fake()->firstName() . '&chars=1',

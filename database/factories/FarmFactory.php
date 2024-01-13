@@ -17,7 +17,6 @@ class FarmFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => fake()->unique()->numberBetween(1,10),
             'phone_1' => fake()->phoneNumber(),
             'phone_2' => fake()->phoneNumber(),
             'email' => fake()->unique()->email(),

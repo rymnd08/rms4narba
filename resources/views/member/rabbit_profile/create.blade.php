@@ -20,7 +20,7 @@
                 <div class="col mb-3">
                     <div class="form-group">
                         <label for="rabbit_code" class="form-label">Rabbit Code <code>*</code></label>
-                        <input type="text" class="form-control" id="rabbit_code" name="rabbit_code" placeholder=""  autofocus>
+                        <input type="text" class="form-control" id="rabbit_code" name="rabbit_code" placeholder="" value="{{old('rabbit_code')}}" autofocus>
                         @error('rabbit_code')
                             <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -31,7 +31,7 @@
                 <div class="col mb-3">
                     <div class="form-group">
                         <label for="rabbit_name" class="form-label">Rabbit Name</label>
-                        <input type="text" class="form-control" id="rabbit_name" name="rabbit_name" placeholder="">
+                        <input type="text" class="form-control" id="rabbit_name" name="rabbit_name" placeholder="" value="{{old('rabbit_name')}}">
                         @error('rabbit_name')
                             <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -42,7 +42,7 @@
                 <div class="col mb-3">
                     <div class="form-group">
                         <label for="cage_number" class="form-label">Cage Number</label>
-                        <input type="text" class="form-control" id="cage_number" name="cage_number" placeholder="">
+                        <input type="text" class="form-control" id="cage_number" name="cage_number" placeholder="" value="{{old('cage_number')}}">
                         @error('cage_number')
                             <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -54,9 +54,9 @@
                     <div class="form-group">
                         <label for="rabbit_sex">Rabbit sex <code>*</code></label>
                         <select class="form-control" id="rabbit_sex" name="sex">
-                            <option value="" selected>Select rabbit sex</option>
-                            <option value="Buck">Buck</option>
-                            <option value="Doe">Doe</option>
+                            <option value="" >Select rabbit sex</option>
+                            <option value="Buck" {{old('sex') === 'Buck' ?  'selected' : ''}}>Buck</option>
+                            <option value="Doe" {{old('sex') === 'Doe' ?  'selected' : ''}}>Doe</option>
                         </select>
                         @error('sex')
                             <small class="text-danger">{{$message}}</small>
@@ -70,8 +70,8 @@
                         <label for="rabbit_type">Rabbit type <code>*</code></label>
                         <select class="form-control" id="rabbit_type" name="type">
                             <option value="" selected>Select rabbit type</option>
-                            <option value="Meat">Meat</option>
-                            <option value="Pet">Pet</option>
+                            <option value="Meat"{{old('type') == 'Meat' ? 'selected' : ''}}>Meat</option>
+                            <option value="Pet" {{old('type') == 'Pet' ? 'selected' : ''}}>Pet</option>
                         </select>
                         @error('type')
                             <small class="text-danger">{{$message}}</small>
@@ -79,44 +79,14 @@
                     </div>
                 </div>
                 
-                @php
-                    $rabbitBreeds = [
-                        "American",
-                        "Angora",
-                        "Belgian Hare",
-                        "Beveren",
-                        "Californian",
-                        "Chinchilla",
-                        "Dutch",
-                        "English Angora",
-                        "Flemish Giant",
-                        "French Lop",
-                        "Harlequin",
-                        "Himalayan",
-                        "Holland Lop",
-                        "Jersey Wooly",
-                        "Lionhead",
-                        "Mini Lop",
-                        "Mini Rex",
-                        "Netherland Dwarf",
-                        "New Zealand",
-                        "Polish",
-                        "Rex",
-                        "Satin",
-                        "Silver Fox",
-                        "Tan",
-                        "Thrianta"
-                      ]
-                @endphp
-
                 <!-- Breed  -->
                 <div class="col mb-3">
                     <div class="form-group">
                         <label for="rabbit_breed">Rabbit breed <code>*</code></label>
-                        <select class="form-control" id="rabbit_breed" name="breed">
-                            <option value="" selected>Select rabbit breed</option>
-                            @foreach ($rabbitBreeds as $breed)
-                                <option value="{{ $breed }}">{{ $breed }}</option>
+                        <select class="form-control" id="rabbit_breed" name="breed" >
+                            <option value="" >Select rabbit breed</option>
+                            @foreach ($breeds as $breed)
+                                <option value="{{$breed->type_id}}" {{old('breed') === $breed ? 'selected' : ''}}>{{ $breed->breed }}</option>
                             @endforeach
                         </select>
                         @error('breed')
@@ -130,9 +100,9 @@
                     <div class="form-group">
                         <label for="rabbit_color">Rabbit color</label>
                         <select class="form-control" id="rabbit_color" name="color">
-                            <option value="" selected>Select rabbit color</option>
-                            <option value="Pink">Pink</option>
-                            <option value="Red">Red</option>
+                            <option value="">Select rabbit color</option>
+                            <option value="Pink" {{old('color') === 'Pink' ? 'selected' : ''}}>Pink</option>
+                            <option value="Red" {{old('color') === 'Red' ? 'selected' : ''}}>Red</option>
                         </select>
                         @error('color')
                             <small class="text-danger">{{$message}}</small>
@@ -143,7 +113,7 @@
                 <div class="col mb-3" >
                     <div class="form-group">
                         <label for="rabbit_birthdate">Birthdate</label>
-                        <input class="form-control" type="date" id="rabbit_birthdate" name="birthdate">
+                        <input class="form-control" type="date" id="rabbit_birthdate" name="birthdate" value="{{old('birthdate')}}">
                         @error('birthdate')
                             <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -158,7 +128,7 @@
                 <div class="col-12 mb-3">
                     <div class="form-group">
                         <label for="description" class="form-label">Description (optional)</label>
-                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="3">{{old('description')}}</textarea>
                         @error('description')
                             <small class="text-danger">{{$message}}</small>
                         @enderror

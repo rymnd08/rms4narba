@@ -3,6 +3,7 @@
 use App\Http\Controllers\BreedController;
 use App\Http\Controllers\RabbitController;
 use App\Http\Controllers\RabbitProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,8 +59,12 @@ Route::prefix('member')->group(function(){
         Route::put('/rabbit-profile/{id}', 'update')->name('rabbit-profile.update');
         Route::delete('/rabbit-profile/{id}', 'destroy')->name('rabbit-profile.destroy');
     });
+
+    Route::controller(UserController::class)->group(function(){
+        Route::get('/user', 'index');
+    });
 });
 
 Route::fallback(function(){
     return view('pages.404');
-});
+})->name('fallback');

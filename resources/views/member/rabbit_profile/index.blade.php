@@ -35,17 +35,15 @@
                     <td>
                         <div class="d-flex flex-nowrap" style="gap: .25rem">
                             <a href="{{ url('member/rabbit-profile', ['id' => $rp->id]) }}" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i></a>
-                            <a href="{{ route('breed.edit') }}" class="btn btn-outline-success btn-sm"><i class="bi bi-pencil"></i></a>
+                            <a href="{{url("member/rabbit-profile/$rp->id/edit")}}" class="btn btn-outline-success btn-sm"><i class="bi bi-pencil"></i></a>
 
-                            <x-delete-modal title="Confirm delete" body="Are you sure you?">
-                                <x-slot:form>
-                                    <form action="{{ route('rabbit-profile.destroy', ['id' => $rp->id]) }}" method="post">
-                                        @csrf
-                                        @method('delete')
+                            <x-delete-modal title="Confirm Delete" body="Are you sure you want to delete this rabbit?">
+                                <form action="{{ route('rabbit-profile.destroy', ['id' => $rp->id]) }}" method="post">
+                                    @csrf
+                                    @method('delete')
 
-                                        <button type="submit" class="btn btn-danger">Yes</button>
-                                    </form>
-                                </x-slot:form>
+                                    <button type="submit" class="btn btn-danger">Yes</button>
+                                </form>
                             </x-delete-modal>
 
                         </div>

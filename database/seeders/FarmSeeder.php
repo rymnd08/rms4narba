@@ -15,6 +15,6 @@ class FarmSeeder extends Seeder
      */
     public function run()
     {
-        Farm::factory(10)->create();
+        Farm::factory(2)->create();
     }
 }

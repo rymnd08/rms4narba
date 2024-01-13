@@ -9,5 +9,5 @@ class RabbitProfile extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['_token'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 }
