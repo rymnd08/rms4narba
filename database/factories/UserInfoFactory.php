@@ -12,8 +12,7 @@ class UserInfoFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => fake()->numberBetween(1, 10),
-            'user_type_id' => fake()->numberBetween(1, 3),
+            'user_id' => fake()->numberBetween(1, 3),
             'first_name' => fake()->firstName(),
             'middle_name' => fake()->lastName(),
             'last_name' => fake()->lastName(),

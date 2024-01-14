@@ -17,8 +17,8 @@ class FarmUserFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => fake()->numberBetween(1,10),
-            'farm_id' => fake()->randomElement([1,2]),
+            'user_id' =>  1,
+            'farm_id' =>  1
         ];
     }
 }

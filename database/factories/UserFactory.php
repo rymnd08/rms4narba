@@ -15,7 +15,6 @@ class UserFactory extends Factory
         return [
             'user_type_id' => fake()->randomElement([1,2,3]),
             'email' => fake()->unique()->safeEmail(),
-            'user_name' => fake()->unique()->userName(),
             'email_verified_at' => now(),
             'password' => fake()->md5('123456'),
             'remember_token' => Str::random(10),

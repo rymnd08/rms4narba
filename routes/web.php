@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BreedController;
-use App\Http\Controllers\RabbitController;
 use App\Http\Controllers\RabbitProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +19,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(){
     return redirect('member/');
+});
+
+// Authentication route 
+Route::controller(AuthController::class)->group(function(){
+    Route::get('/register', 'create')->name('register-page');
+    Route::get('/login', 'login')->name('login-page');
+    Route::post('/login', 'authenticate')->name('auth-login');
+    Route::post('/register', 'register')->name('auth-register');
+    Route::post('/logout', 'logout')->name('logout');
 });
 
 // Admin route 
@@ -43,7 +52,7 @@ Route::prefix('admin')->group(function(){
 });
 
 // Member route 
-Route::prefix('member')->group(function(){
+Route::middleware('auth')->prefix('member')->group(function(){
     Route::get('/', function(){
         // return redirect('member/rabbit-profile');
         return view('member.pages.dashboard');

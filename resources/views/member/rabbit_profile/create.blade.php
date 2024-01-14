@@ -120,6 +120,16 @@
                     </div>
                 </div>
 
+                <!-- File input  -->
+                <div class="col mb-3">
+                    <div class="form-group">
+                        <label for="rabbit_image">Example file input</label>
+                        <input type="file" class="form-control-file" id="rabbit_image" name="rabbit_image">
+                        @error('rabbit_image')
+                            <small class="text-danger">{{$message}}</small>
+                        @enderror
+                </div>
+
             </div>
             <!-- End first row-->
 

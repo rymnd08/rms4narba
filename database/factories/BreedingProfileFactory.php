@@ -18,7 +18,7 @@ class BreedingProfileFactory extends Factory
     {
         return [
             'rabbit_id' => fake()->numberBetween(1,10),
-            'mated_to_rabbit_id' => fake()->numberBetween(1,10),
+            'mated_to_id' => fake()->numberBetween(1,10),
             'cage_number' => fake()->numberBetween(1,20),
             'mating_date' => fake()->date('Y-m-d'),
             'birthdate' => fake()->date('Y-m-d'),

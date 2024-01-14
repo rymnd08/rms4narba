@@ -18,15 +18,11 @@
     <!-- Custom styles for this template-->
     @vite('resources/css/sb-admin-2.min.css')
 
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body class="bg-gradient-primary">
 
-
-
-    <div class="container relative">
-
+    <div class="container">
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -40,53 +36,60 @@
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
-
-                                    <!-- User successfully created an account  -->
-                                    @if (session()->has('message'))
-                                        <x-popup type="{{ session('type') }}" message="{{session('message')}}" />
-                                    @endif
-
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">User Login</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Create your own account</h1>
                                     </div>
-
-                                    <form class="user" method="post" action="{{ route('auth-login') }}">
+                                    <form class="user" method="post" action="{{route('auth-register')}}">
                                         @csrf
 
+                                        <!-- <div class="form-group">
+                                            <input type="text" class="form-control form-control-user @error('user_name') is-invalid @enderror" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter username..." name="user_name" value="{{ old('user_name') }}" />
+                                            @error('user_name')
+                                                <small class="text-danger">{{$message}}</small>
+                                            @enderror
+                                        </div> -->
+
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email">
+                                            <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror " id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" value="{{ old('email') }}" />
                                             @error('email')
                                                 <small class="text-danger">{{$message}}</small>
                                             @enderror
                                         </div>
+
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password">
+                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror" id="exampleInputPassword" placeholder="Password" name="password" />
                                             @error('password')
                                                 <small class="text-danger">{{$message}}</small>
                                             @enderror
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </button>
+
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password_confirmation" />
+                                            @error('password_confirmation')
+                                            <small class="text-danger">{{$message}}</small>
+                                            @enderror
+                                        </div>
                                         <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                                <label class="custom-control-label" for="customCheck">Remember Me</label>
                                             </div>
                                         </div> -->
+                                        <!-- <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                            Login
+                                        </a> -->
                                         <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a> -->
-                                        <!-- <button type="submit" class="btn btn-facebook btn-user btn-block">Login</button> -->
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">Create account</button>
                                     </form>
                                     <hr>
-                                    <!-- <div class="text-center">
+                                    <div class="text-center">
                                         <a class="small" href="{{ route('login-page') }}">Forgot Password?</a>
-                                    </div> -->
+                                    </div>
                                     <div class="text-center">
                                         <a class="small" href="{{ route('register-page') }}">Create an Account!</a>
                                     </div>

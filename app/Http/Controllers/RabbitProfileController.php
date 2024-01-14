@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Helper;
 use App\Models\Breed;
 use Illuminate\Http\Request;
 use App\Models\RabbitProfile;
 use App\Http\Requests\StoreRabbitProfileRequest;
 use App\Http\Requests\UpdateRabbitProfileRequest;
+use Illuminate\Support\Facades\Storage;
 
 class RabbitProfileController extends Controller
 {
@@ -64,7 +66,20 @@ class RabbitProfileController extends Controller
     // Process request from form 
     public function store(StoreRabbitProfileRequest $request)
     {
-        $request->merge(['farm_id' => 1]);
+        // dd($request->all());
+
+        if($request->hasFile('rabbit_image') && $request->file('rabbit_image')->isValid()){
+            
+            $rabbit_image = $request->file('rabbit_image');
+            $fileName = Helper::fileRename($rabbit_image);
+    
+            $request->file('rabbit_image')->storeAs(
+                'public/rabbit_image/', $fileName
+            );
+        }
+
+        $request->merge(['farm_id' => 1, 'rabbit_image' => $fileName]);
+
 
         $create = RabbitProfile::create($request->all());
 
@@ -79,6 +94,7 @@ class RabbitProfileController extends Controller
         return back()->with('type', $type)->with('message', $message);
 
     }
+
     public function update(UpdateRabbitProfileRequest $request, $id)
     {
         $request->merge(['rabbit_image' => 'https://api.dicebear.com/7.x/initials/svg?seed='. $request->rabbit_code . '&chars=1']);
