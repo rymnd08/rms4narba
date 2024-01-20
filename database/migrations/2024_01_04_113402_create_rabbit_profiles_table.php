@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('breed_id')->nullable();
             $table->string('color');
             $table->date('birthdate');
-            $table->string('rabbit_image')->nullable();
+            $table->string('image')->nullable();
             $table->text('description');
             $table->timestamps();
         });

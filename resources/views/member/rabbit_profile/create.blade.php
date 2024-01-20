@@ -1,5 +1,5 @@
 @include('partials.header')
-@include('partials.wrapper')
+@include('partials.member.wrapper')
 
 <x-page-header header="Add rabbit" />
 
@@ -68,25 +68,24 @@
                 <div class="col mb-3">
                     <div class="form-group">
                         <label for="rabbit_type">Rabbit type <code>*</code></label>
-                        <select class="form-control" id="rabbit_type" name="type">
+                        <select class="form-control" id="rabbit_type" name="type_id">
                             <option value="" selected>Select rabbit type</option>
-                            <option value="Meat"{{old('type') == 'Meat' ? 'selected' : ''}}>Meat</option>
-                            <option value="Pet" {{old('type') == 'Pet' ? 'selected' : ''}}>Pet</option>
+                            <option value="1"{{old('type_id') == '1' ? 'selected' : ''}}>Meat</option>
+                            <option value="2" {{old('type_id') == '2' ? 'selected' : ''}}>Pet</option>
                         </select>
                         @error('type')
                             <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div>
                 </div>
-                
                 <!-- Breed  -->
                 <div class="col mb-3">
                     <div class="form-group">
                         <label for="rabbit_breed">Rabbit breed <code>*</code></label>
-                        <select class="form-control" id="rabbit_breed" name="breed" >
+                        <select class="form-control" id="rabbit_breed" name="breed_id" >
                             <option value="" >Select rabbit breed</option>
                             @foreach ($breeds as $breed)
-                                <option value="{{$breed->type_id}}" {{old('breed') === $breed ? 'selected' : ''}}>{{ $breed->breed }}</option>
+                                <option value="{{$breed->id}}" {{old('breed_id') == $breed->id ? 'selected' : ''}}>{{ $breed->breed }}</option>
                             @endforeach
                         </select>
                         @error('breed')
@@ -123,18 +122,19 @@
                 <!-- File input  -->
                 <div class="col mb-3">
                     <div class="form-group">
-                        <label for="rabbit_image">Example file input</label>
+                        <label for="rabbit_image">Rabbit Image</label>
                         <input type="file" class="form-control-file" id="rabbit_image" name="rabbit_image">
                         @error('rabbit_image')
                             <small class="text-danger">{{$message}}</small>
                         @enderror
+                    </div>
                 </div>
 
             </div>
             <!-- End first row-->
 
             <!-- Description  -->
-            <div class="row " style="max-width: 992px">
+            <div class="row" style="max-width: 992px">
                 <div class="col-12 mb-3">
                     <div class="form-group">
                         <label for="description" class="form-label">Description (optional)</label>
@@ -147,12 +147,39 @@
                 <div class="col">
                     <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> Reset</button>
                     <button type="submit" class="btn btn-primary"><i class="bi bi-database-add"></i> Save</button>
+                    <button type="button" id="add-data">Add data</button>
                 </div>
             </div>
 
         </div>
     </div>
 </form>
+
+<script>
+    const rabbit_code = document.querySelector('#rabbit_code')
+    const rabbit_name = document.querySelector('#rabbit_name')
+    const cage_number = document.querySelector('#cage_number')
+    const rabbit_sex = document.querySelector('#rabbit_sex')
+    const rabbit_type = document.querySelector('#rabbit_type')
+    const rabbit_breed = document.querySelector('#rabbit_breed')
+    const rabbit_birthdate = document.querySelector('#rabbit_birthdate')
+    const description = document.querySelector('#description')
+    const rabbit_color = document.querySelector('#rabbit_color')
+
+    document.querySelector('#add-data')
+        .addEventListener('click', ()=>{
+            rabbit_code.value = 'a-123'
+            rabbit_name.value = 'luna'
+            rabbit_sex.value = 'Buck'
+            rabbit_color.value = 'Pink'
+            rabbit_type.value = 1;
+            rabbit_breed.value = 1;
+            rabbit_birthdate.value = '2022-01-01'
+            cage_number.value  = '1'
+            description.innerHTML = 'Kapeng mainit';
+        })
+    
+</script>
 
 @include('partials.endwrapper')
 @include('partials.footer')

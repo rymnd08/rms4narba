@@ -1,5 +1,5 @@
 @include('partials.header')
-@include('partials.wrapper')
+@include('partials.member.wrapper')
     
     
     <x-page-header header="Rabbit Profiles" />
@@ -7,10 +7,10 @@
     @if (session()->has('message'))
         <x-popup :type="session('type')" :message="session('message')" />
     @endif
-    
+
     <x-table>
         <x-slot:cardHeader>
-            <a href="{{ url("/member/rabbit-profile/create") }}" class="btn btn-primary btn-sm add-btn"><i class="bi bi-plus-lg"></i> Add </a>
+            <a href="{{ route('rabbit-profile.create') }}" class="btn btn-primary btn-sm add-btn"><i class="bi bi-plus-lg"></i> Add </a>
         </x-slot:cardHeader>
         <x-slot:tableHeaders>
             <th>#</th>
@@ -30,12 +30,12 @@
                     <td>{{ $rp->cage_number }}</td>
                     <td>{{ $rp->sex }}</td>
                     <td>
-                        <img class="rounded-circle" src="{{$rp->rabbit_image}}" alt="Rabbit Profile Image" height="50" width="50">
+                        <img class="rounded-circle border" style="object-fit: cover;" src="{{$rp->image ? asset("storage/rabbit_image/$rp->image") : asset('img/rabbit_default.jpg') }}" alt="Rabbit Profile Image" height="50" width="50">
                     </td>
                     <td>
                         <div class="d-flex flex-nowrap" style="gap: .25rem">
-                            <a href="{{ url('member/rabbit-profile', ['id' => $rp->id]) }}" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i></a>
-                            <a href="{{url("member/rabbit-profile/$rp->id/edit")}}" class="btn btn-outline-success btn-sm"><i class="bi bi-pencil"></i></a>
+                            <a href="{{ route('rabbit-profile.show', ['id' => $rp->id]) }}" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i></a>
+                            <a href="{{ route('rabbit-profile.edit', ['id' => $rp->id])}}" class="btn btn-outline-success btn-sm"><i class="bi bi-pencil"></i></a>
 
                             <x-delete-modal title="Confirm Delete" body="Are you sure you want to delete this rabbit?">
                                 <form action="{{ route('rabbit-profile.destroy', ['id' => $rp->id]) }}" method="post">

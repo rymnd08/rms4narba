@@ -1,25 +1,26 @@
 @include('partials.header')
-@include('partials.wrapper')
+@include('partials.member.wrapper')
 
 <x-page-header header="Update Rabbit" />
 
-<form action="{{route('rabbit-profile.update', ['id' => $rabbit->id])}}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('put')
 
-    @if (session()->has('message'))
-        <x-popup :type="session('type')" message="{{ session('message') }}" />
-    @endif
 
-    <div class="card">
-        <div class="card-body">
+<div class="card">
+    <div class="card-body">
+        <form action="{{route('rabbit-profile.update', ['id' => $rabbit->id])}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('put')
+
+            @if (session()->has('message'))
+            <x-popup :type="session('type')" message="{{ session('message') }}" />
+            @endif
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 " style="max-width: 992px">
 
                 <!-- Code  -->
                 <div class="col mb-3">
                     <div class="form-group">
                         <label for="rabbit_code" class="form-label">Rabbit Code <code>*</code></label>
-                        <input type="text" class="form-control" id="rabbit_code" name="rabbit_code" placeholder="" value="{{$rabbit->rabbit_code}}" >
+                        <input type="text" class="form-control" id="rabbit_code" name="rabbit_code" placeholder="" value="{{$rabbit->rabbit_code}}">
                         @error('rabbit_code')
                         <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -73,7 +74,7 @@
                             <option value="{{$rabbit->type_id}}" {{$rabbit->type_id == 2 ? 'selected' : ''}}>Pet</option>
                         </select>
                         @error('type')
-                            <small class="text-danger">{{$message}}</small>
+                        <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div>
                 </div>
@@ -85,7 +86,7 @@
                         <select class="form-control" id="rabbit_breed" name="breed_id">
                             <option value="">Select rabbit breed</option>
                             @foreach ($breeds as $breed)
-                                <option value="{{$breed->type_id}}" {{$rabbit->breed_id === $breed->id ? 'selected' : ''}}>{{ $breed->breed }}</option>
+                            <option value="{{$breed->type_id}}" {{$rabbit->breed_id === $breed->id ? 'selected' : ''}}>{{ $breed->breed }}</option>
                             @endforeach
                         </select>
                         @error('breed')
@@ -104,7 +105,7 @@
                             <option value="Red" {{$rabbit->color === 'Red' ? 'selected' : ''}}>Red</option>
                         </select>
                         @error('color')
-                            <small class="text-danger">{{$message}}</small>
+                        <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div>
                 </div>
@@ -114,7 +115,7 @@
                         <label for="rabbit_birthdate">Birthdate</label>
                         <input class="form-control" type="date" id="rabbit_birthdate" name="birthdate" value="{{$rabbit->birthdate}}">
                         @error('birthdate')
-                            <small class="text-danger">{{$message}}</small>
+                        <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div>
                 </div>
@@ -129,7 +130,7 @@
                         <label for="description" class="form-label">Description (optional)</label>
                         <textarea class="form-control" id="description" name="description" rows="3">{{$rabbit->description}}</textarea>
                         @error('description')
-                            <small class="text-danger">{{$message}}</small>
+                        <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div>
                 </div>
@@ -137,10 +138,12 @@
                     <button type="submit" class="btn btn-primary"><i class="bi bi-database-add"></i>Update</button>
                 </div>
             </div>
+        </form>
 
-        </div>
     </div>
-</form>
+    <!-- End card-body  -->
+</div>
+<!-- End card  -->
 
 @include('partials.endwrapper')
 @include('partials.footer')

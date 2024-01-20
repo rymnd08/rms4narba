@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\Helper;
 use App\Models\Breed;
-use Illuminate\Http\Request;
+use App\Helper\Helper;
 use App\Models\RabbitProfile;
 use App\Http\Requests\StoreRabbitProfileRequest;
 use App\Http\Requests\UpdateRabbitProfileRequest;
-use Illuminate\Support\Facades\Storage;
 
 class RabbitProfileController extends Controller
 {
@@ -21,23 +19,22 @@ class RabbitProfileController extends Controller
 
     public function show($id)
     {
-        $id = request('id');
+        // $id = request('id');
         $data = RabbitProfile::find($id);
-        
-        if(!$data) return abort(404, 'No data found');
+
+        if (!$data) return abort(404, 'No data found');
 
         return view('member.rabbit_profile.show', ['rabbit' => $data]);
-
     }
 
     public function create()
     {
         $breeds = Breed::all();
-        return view('member.rabbit_profile.create',['breeds' => $breeds]);
+        return view('member.rabbit_profile.create', ['breeds' => $breeds]);
     }
 
     public function edit($id)
-    {   
+    {
         $rabbitProfile = RabbitProfile::findOrFail($id);
 
         $breeds = Breed::all();
@@ -52,52 +49,51 @@ class RabbitProfileController extends Controller
     {
         $delete = RabbitProfile::destroy($id);
 
-        if($delete){
+        if ($delete) {
             $message = 'Rabbit delete successfully';
             $type = 'success';
-        }else{
+        } else {
             $message = 'Rabbit delete successfully';
             $type = 'danger';
         }
-        
+
         return redirect('/member/rabbit-profile')->with('message', $message)->with('type', $type);
     }
 
     // Process request from form 
     public function store(StoreRabbitProfileRequest $request)
     {
-        // dd($request->all());
-
-        if($request->hasFile('rabbit_image') && $request->file('rabbit_image')->isValid()){
-            
+        // Input file 
+        if ($request->hasFile('rabbit_image') ) 
+        {
             $rabbit_image = $request->file('rabbit_image');
-            $fileName = Helper::fileRename($rabbit_image);
-    
+            $filenameWithoutExtension = pathinfo($rabbit_image->getClientOriginalName(), PATHINFO_FILENAME);
+            $fileExtenstion = $rabbit_image->getClientOriginalExtension();
+            $newName = 'File_' . time() . $filenameWithoutExtension . '.' . $fileExtenstion;
             $request->file('rabbit_image')->storeAs(
-                'public/rabbit_image/', $fileName
+                'public/rabbit_image/',
+                $newName
             );
         }
-
-        $request->merge(['farm_id' => 1, 'rabbit_image' => $fileName]);
-
-
+        
+        $request->merge(['farm_id' => 1, 'image' => $newName]);
         $create = RabbitProfile::create($request->all());
 
-        if($create){
+        if ($create) {
             $message = 'Rabbit added successfully!';
             $type = 'success';
-        }else{
+        } else {
             $type = 'danger';
             $message = 'Rabbit add failed!';
         }
 
         return back()->with('type', $type)->with('message', $message);
-
     }
+
 
     public function update(UpdateRabbitProfileRequest $request, $id)
     {
-        $request->merge(['rabbit_image' => 'https://api.dicebear.com/7.x/initials/svg?seed='. $request->rabbit_code . '&chars=1']);
+        $request->merge(['rabbit_image' => 'https://api.dicebear.com/7.x/initials/svg?seed=' . $request->rabbit_code . '&chars=1']);
 
         $request['type_id'] = (int) $request->type_id;
         $request['breed_id'] = (int) $request->breed_id;
@@ -106,16 +102,14 @@ class RabbitProfileController extends Controller
 
         $update = $rabbit->update($request->except(['_token', '_method']));
 
-        if($update){
+        if ($update) {
             $type = 'success';
             $message = 'Rabbit was updated successfully!';
-        }else{
+        } else {
             $type = 'danger';
             $message = 'Rabbit update failed!';
         }
 
         return back()->with('type', $type)->with('message', $message);
-
     }
-
 }

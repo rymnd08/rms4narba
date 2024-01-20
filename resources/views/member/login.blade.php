@@ -74,6 +74,7 @@
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="{{ url('register') }}">Create an Account!</a>
+                                        <a href="" class="small">Login as Admin</a>
                                     </div>
                                 </div>
                             </div>

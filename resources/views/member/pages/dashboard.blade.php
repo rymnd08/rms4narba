@@ -1,5 +1,5 @@
 @include('partials.header')
-@include('partials.wrapper')
+@include('partials.member.wrapper')
 
     <x-page-header header="Kape" />
 

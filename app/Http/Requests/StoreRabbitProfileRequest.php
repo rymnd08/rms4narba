@@ -17,22 +17,22 @@ class StoreRabbitProfileRequest extends FormRequest
 
         return [
             'rabbit_code' => ['required', 'max:255'],
-            'rabbit_name' => ['required','max:255'],
-            'cage_number' => ['required','max:255'],
+            'rabbit_name' => ['required', 'max:255'],
+            'cage_number' => ['required', 'max:255'],
             'sex' => ['required', 'max:255'],
             'type_id' => ['required'],
             'color' => ['required', 'max:255'],
             'breed_id' => ['required', 'max:255'],
             'birthdate' => ['required', 'max:255'],
-            // 'rabbit_image' => ['required', 'mimes:jpeg,png,jpg,gif','max:4096'],
             'description' => ['required', 'max:255'],
+            'rabbit_image' => ['sometimes', 'mimes:png,jpg']
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'rabbit_image.mimes' => "Image must be of typ jpeg,png,jpg,gif",
-        ];
-    }
+    // public function messages()
+    // {
+    //     return [
+    //         'rabbit_image.mimes' => "Image must be of typ jpeg,png,jpg,gif",
+    //     ];
+    // }
 }

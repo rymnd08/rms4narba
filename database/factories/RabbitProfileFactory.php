@@ -26,7 +26,7 @@ class RabbitProfileFactory extends Factory
             'color' => fake()->randomElement(['Pink', 'Red']),
             'breed_id' => fake()->numberBetween(1,10),
             'birthdate' => fake()->date('Y-m-d'),
-            'rabbit_image' =>  'https://api.dicebear.com/7.x/initials/svg?seed='.fake()->firstName() . '&chars=1',
+            'image' =>  null,
             'description' => fake()->paragraph(1),
         ];
     }
