@@ -7,6 +7,7 @@ use App\Helper\Helper;
 use App\Models\RabbitProfile;
 use App\Http\Requests\StoreRabbitProfileRequest;
 use App\Http\Requests\UpdateRabbitProfileRequest;
+use Illuminate\Support\Facades\Storage;
 
 class RabbitProfileController extends Controller
 {
@@ -48,8 +49,10 @@ class RabbitProfileController extends Controller
     public function destroy($id)
     {
         $delete = RabbitProfile::destroy($id);
-
+        $img = request()->query('img');
+        
         if ($delete) {
+            Storage::delete("public/rabbit_image/$img");
             $message = 'Rabbit delete successfully';
             $type = 'success';
         } else {

@@ -38,7 +38,7 @@
                             <a href="{{ route('rabbit-profile.edit', ['id' => $rp->id])}}" class="btn btn-outline-success btn-sm"><i class="bi bi-pencil"></i></a>
 
                             <x-delete-modal title="Confirm Delete" body="Are you sure you want to delete this rabbit?">
-                                <form action="{{ route('rabbit-profile.destroy', ['id' => $rp->id]) }}" method="post">
+                                <form action="{{ route('rabbit-profile.destroy', ['id' => $rp->id, 'img' => $rp->image ]) }}" method="post">
                                     @csrf
                                     @method('delete')
 
