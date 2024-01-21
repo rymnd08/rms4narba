@@ -20,6 +20,7 @@
     @vite('resources/css/sb-admin-2.min.css')
     <!-- table css  -->
     @vite('resources/vendor/datatables/dataTables.bootstrap4.min.css')
+    @vite('resources/css/app.css')
 </head>
 
 <body id="page-top">

@@ -1,0 +1,10 @@
+.rp-img-container {
+    width: 250px;
+    height: 250px;
+    background-color: #0275d8;
+    overflow: hidden;
+}
+
+.rp-img-modal {
+    width: 100%;
+}

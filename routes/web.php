@@ -65,6 +65,7 @@ Route::middleware('auth')->prefix('member')->group(function(){
         Route::get('/rabbit-profile/{id}', 'show')->name('rabbit-profile.show');
         Route::put('/rabbit-profile/{id}', 'update')->name('rabbit-profile.update');
         Route::delete('/rabbit-profile/{id}', 'destroy')->name('rabbit-profile.destroy');
+        Route::put('/rabbit-profile/{id}/updateImage', 'updateImage')->name('rabbit-profile.updateImage');
     });
 
     Route::controller(UserController::class)->group(fn() => Route::get('/user', 'index'));

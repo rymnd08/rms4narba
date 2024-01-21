@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Breed;
-use App\Helper\Helper;
+use Illuminate\Http\Request;
 use App\Models\RabbitProfile;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreRabbitProfileRequest;
 use App\Http\Requests\UpdateRabbitProfileRequest;
-use Illuminate\Support\Facades\Storage;
 
 class RabbitProfileController extends Controller
 {
@@ -67,6 +67,7 @@ class RabbitProfileController extends Controller
     public function store(StoreRabbitProfileRequest $request)
     {
         // Input file 
+        $newName = '';
         if ($request->hasFile('rabbit_image') ) 
         {
             $rabbit_image = $request->file('rabbit_image');
@@ -111,6 +112,40 @@ class RabbitProfileController extends Controller
         } else {
             $type = 'danger';
             $message = 'Rabbit update failed!';
+        }
+
+        return back()->with('type', $type)->with('message', $message);
+    }
+
+    public function updateImage(Request $request,$id){
+        
+        $request->validate([
+            "photo" => ['required', 'max:2096', 'mimes:png,jpg,gif']
+        ]);
+        
+        $imgName = request('img');
+        $newName = '';
+        if($request->has('photo')){
+            $img = $request->file('photo');
+            $filenameWithoutExtension = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+            $fileExtenstion = $img->getClientOriginalExtension();
+            $newName = 'File_' . time() . $filenameWithoutExtension . '.' . $fileExtenstion;
+            $request->file('photo')->storeAs(
+                'public/rabbit_image/',
+                $newName
+            );
+        }
+        
+        $rabbit = RabbitProfile::findorFail($id);
+        $rabbit->image = $newName;
+        $save = $rabbit->save();
+        if($save){
+            Storage::delete("public/rabbit_image/$imgName");
+            $type = 'success';
+            $message = 'Image was successfully changed';
+        }else{
+            $type = 'danger';
+            $message = 'Something went wrong updating the image';
         }
 
         return back()->with('type', $type)->with('message', $message);

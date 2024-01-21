@@ -20,8 +20,6 @@
             <span>Dashboard</span></a>
     </li>
 
-
-
     <hr class="sidebar-divider">
 
     <!-- Heading -->
@@ -51,13 +49,13 @@
 
     <!-- Routes  -->
     <li class="nav-item {{ request()->is("member/rabbit-profile/*") || request()->is("member/rabbit-profile") ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('member/rabbit-profile') }}">
+        <a class="nav-link" href="{{ route("rabbit-profile") }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Rabbit Profiles</span></a>
     </li>
 
     <li class="nav-item {{ request()->is('/member/breeding-profile') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('member/breeding-profile') }}">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Breeding Profiles</span></a>
     </li>
@@ -100,4 +98,3 @@
     </div>
 
 </ul>
-<!-- End of Sidebar -->
