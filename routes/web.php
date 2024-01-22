@@ -28,16 +28,19 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('/register', 'register')->name('auth-register');
     Route::post('/logout', 'logout')->name('logout');
 });
+
+// Narba authentication 
 Route::controller(NarbaAuthControler::class)->group(function(){
-    Route::get('/n/login', 'login')->name('narba-login-page');
+    Route::get('/n/register', fn() => view('pages.narba-register'))->name('narba-register-page');
+    Route::post('/n/register', 'store')->name('narba-register');
+    Route::get('/n/login', fn() => view('pages.narba-login'))->name('narba-login-page');
     Route::post('/n/login', 'authenticate')->name('narba-auth');
 });
 
 // Admin route 
 Route::prefix('admin')->group(function(){
 
-    Route::get('/', fn() => view('admin.index'));
-    Route::get('/login', fn() => view('admin.login'));
+    Route::get('/', fn() => view('admin.index'))->name('admin-dashboard');
 
     // Breed route 
     Route::controller(BreedController::class)->group(function(){
@@ -67,6 +70,7 @@ Route::middleware('auth')->prefix('member')->group(function(){
         Route::delete('/rabbit-profile/{id}', 'destroy')->name('rabbit-profile.destroy');
         Route::put('/rabbit-profile/{id}/updateImage', 'updateImage')->name('rabbit-profile.updateImage');
     });
+
 
     Route::controller(UserController::class)->group(fn() => Route::get('/user', 'index'));
 });
