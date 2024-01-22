@@ -27,6 +27,13 @@
         Interface
     </div>
 
+    <!-- Create admin account  -->
+    <li class="nav-item {{ request()->is('admin/narba-admin/*') || request('admin/narba-admin') ? "active" : null }}">
+        <a class="nav-link " href="{{ route('narba-admin') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Manage Admins</span></a>
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

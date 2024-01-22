@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BreedController;
-use App\Http\Controllers\NarbaAuthControler;
-use App\Http\Controllers\RabbitProfileController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BreedController;
+use App\Http\Controllers\NarbaAuthController;
+use App\Http\Controllers\NarbaAdminController;
+use App\Http\Controllers\RabbitProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => redirect('member/'));
 
-// Authentication route 
+// Member Authentication 
 Route::controller(AuthController::class)->group(function(){
     Route::get('/register', 'create')->name('register-page');
     Route::get('/login', 'login')->name('login-page');
@@ -30,17 +31,23 @@ Route::controller(AuthController::class)->group(function(){
 });
 
 // Narba authentication 
-Route::controller(NarbaAuthControler::class)->group(function(){
+Route::controller(NarbaAuthController::class)->group(function(){
     Route::get('/n/register', fn() => view('pages.narba-register'))->name('narba-register-page');
     Route::post('/n/register', 'store')->name('narba-register');
     Route::get('/n/login', fn() => view('pages.narba-login'))->name('narba-login-page');
     Route::post('/n/login', 'authenticate')->name('narba-auth');
+    Route::post('/n/logout', 'logout')->name('narba-logout');
 });
 
 // Admin route 
-Route::prefix('admin')->group(function(){
+Route::middleware(['narba.auth'])->prefix('admin')->group(function(){
 
     Route::get('/', fn() => view('admin.index'))->name('admin-dashboard');
+
+    // Narba admins 
+    Route::controller(NarbaAdminController::class)->group(function(){
+        Route::get('/narba-admin', 'index' )->name('narba-admin');
+    });
 
     // Breed route 
     Route::controller(BreedController::class)->group(function(){
@@ -70,9 +77,9 @@ Route::middleware('auth')->prefix('member')->group(function(){
         Route::delete('/rabbit-profile/{id}', 'destroy')->name('rabbit-profile.destroy');
         Route::put('/rabbit-profile/{id}/updateImage', 'updateImage')->name('rabbit-profile.updateImage');
     });
-
-
+    
     Route::controller(UserController::class)->group(fn() => Route::get('/user', 'index'));
+
 });
 
 Route::fallback(fn() => view('pages.404'))->name('fallback');

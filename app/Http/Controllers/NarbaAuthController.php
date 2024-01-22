@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAdminRequest;
 use App\Models\Admin;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Validation\Rule;
 
-class NarbaAuthControler extends Controller
+class NarbaAuthController extends Controller
 {
 
     public function authenticate(Request $request): RedirectResponse
@@ -48,5 +46,12 @@ class NarbaAuthControler extends Controller
         }
 
         return redirect()->route('narba-login-page')->with(['type' => $type, 'message' => $message]);
+    }
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/n/login');
     }
 }

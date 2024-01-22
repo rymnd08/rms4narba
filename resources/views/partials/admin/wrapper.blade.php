@@ -20,7 +20,7 @@
             </form>
 
             <!-- top bar  -->
-            @include('partials.topbar')
+            @include('partials.admin.topbar')
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
