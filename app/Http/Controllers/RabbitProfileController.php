@@ -60,7 +60,7 @@ class RabbitProfileController extends Controller
             $type = 'danger';
         }
 
-        return redirect('/member/rabbit-profile')->with('message', $message)->with('type', $type);
+        return redirect()->route('rabbit-profile')->with(['message' => $message, 'type' => $type]);
     }
 
     // Process request from form 
@@ -98,14 +98,10 @@ class RabbitProfileController extends Controller
     public function update(UpdateRabbitProfileRequest $request, $id)
     {
         $request->merge(['rabbit_image' => 'https://api.dicebear.com/7.x/initials/svg?seed=' . $request->rabbit_code . '&chars=1']);
-
         $request['type_id'] = (int) $request->type_id;
         $request['breed_id'] = (int) $request->breed_id;
-
         $rabbit = RabbitProfile::find($id);
-
         $update = $rabbit->update($request->except(['_token', '_method']));
-
         if ($update) {
             $type = 'success';
             $message = 'Rabbit was updated successfully!';

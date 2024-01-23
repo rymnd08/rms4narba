@@ -1,9 +1,8 @@
-@include('partials.header')
-@include('partials.member.wrapper')
+@extends('layouts.member.layout')
+
+@section('content')
 
 <x-page-header header="Update Rabbit" />
-
-
 
 <div class="card">
     <div class="card-body">
@@ -20,7 +19,7 @@
                 <div class="col mb-3">
                     <div class="form-group">
                         <label for="rabbit_code" class="form-label">Rabbit Code <code>*</code></label>
-                        <input type="text" class="form-control" id="rabbit_code" name="rabbit_code" placeholder="" value="{{$rabbit->rabbit_code}}">
+                        <input type="text" class="form-control" id="rabbit_code" name="rabbit_code" placeholder="" value="{{$rabbit->rabbit_code}}" >
                         @error('rabbit_code')
                         <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -135,7 +134,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-database-add"></i>Update</button>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-database-add"></i> Save</button>
                 </div>
             </div>
         </form>
@@ -145,5 +144,10 @@
 </div>
 <!-- End card  -->
 
-@include('partials.endwrapper')
-@include('partials.footer')
+<script>
+    const myInput = document.getElementById('rabbit_code');
+    myInput.setSelectionRange(myInput.value.length, myInput.value.length);
+    // Optionally, set focus to the input
+    myInput.focus();
+</script>
+@endsection

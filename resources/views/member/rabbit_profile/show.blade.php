@@ -1,5 +1,6 @@
-@include('partials.header')
-@include('partials.member.wrapper')
+@extends('layouts.member.layout')
+
+@section('content')
 
 <x-page-header header="View Rabbit" />
 
@@ -80,6 +81,4 @@
         }
     </script>
 
-
-    @include('partials.endwrapper')
-    @include('partials.footer')
+@endsection

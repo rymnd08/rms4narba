@@ -1,7 +1,6 @@
-@include('partials.header')
-@include('partials.admin.wrapper')
+@extends('layouts.admin.layout')
 
+@section('content')
     <x-page-header header="Manage Admins"  />
-
-@include('partials.endwrapper')
-@include('partials.footer')
+    
+@endsection

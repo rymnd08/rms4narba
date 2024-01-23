@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreBreedRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreBreedRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,15 @@ class StoreBreedRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'breed' => ['required', 'max:255', Rule::unique('breeds', 'breed')],
+            'rabbit_type' => ['required', 'max:255']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'breed.required' => 'Rabbit breed is required'
         ];
     }
 }

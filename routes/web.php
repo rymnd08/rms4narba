@@ -42,20 +42,20 @@ Route::controller(NarbaAuthController::class)->group(function(){
 // Admin route 
 Route::middleware(['narba.auth'])->prefix('admin')->group(function(){
 
-    Route::get('/', fn() => view('admin.index'))->name('admin-dashboard');
+    Route::get('/', fn() => view('admin.dashboard.index'))->name('admin-dashboard');
 
     // Narba admins 
     Route::controller(NarbaAdminController::class)->group(function(){
-        Route::get('/narba-admin', 'index' )->name('narba-admin');
+        Route::get('/narba-admin', 'index' )->name('narba-admin.index');
     });
 
     // Breed route 
     Route::controller(BreedController::class)->group(function(){
-        Route::get('/breed', 'index')->name('breed');
+        Route::get('/breed', 'index')->name('breed.index');
         Route::get('/breed/create', 'create')->name('breed.create');
         Route::post('/breed', 'store')->name('breed.store');
         Route::get('/breed/{id}', 'show')->name('breed.show');
-        Route::get('/breed/edit', 'edit')->name('breed.edit');
+        Route::get('/breed/{id}/edit', 'edit')->name('breed.edit');
         Route::put('/breed/{id}', 'update')->name('breed.update');
         Route::delete('/breed/{id}', 'destroy')->name('breed.destroy');
     });
@@ -64,7 +64,7 @@ Route::middleware(['narba.auth'])->prefix('admin')->group(function(){
 // Member route 
 Route::middleware('auth')->prefix('member')->group(function(){
 
-    Route::get('/', fn() => view('member.pages.dashboard'))->name('member-dashboard');
+    Route::get('/', fn() => view('member.dashboard.index'))->name('member-dashboard');
 
     // Rabbit Profile
     Route::controller(RabbitProfileController::class)->group(function(){

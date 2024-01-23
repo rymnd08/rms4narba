@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">NARBA</div>
     </a>
 
     <!-- Divider -->
@@ -28,10 +28,16 @@
     </div>
 
     <!-- Create admin account  -->
-    <li class="nav-item {{ request()->is('admin/narba-admin/*') || request('admin/narba-admin') ? "active" : null }}">
-        <a class="nav-link " href="{{ route('narba-admin') }}">
+    <li class="nav-item {{ request()->is('admin/narba-admin/*') || request()->is('admin/narba-admin') ? "active" : null }}">
+        <a class="nav-link " href="{{ route('narba-admin.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Manage Admins</span></a>
+    </li>
+
+    <li class="nav-item {{ request()->is('admin/breed/*') || request()->is('admin/breed') ? "active" : null }}">
+        <a class="nav-link " href="{{ route('breed.index') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Manage Breeds</span></a>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->

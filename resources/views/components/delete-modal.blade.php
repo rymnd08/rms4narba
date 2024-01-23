@@ -3,6 +3,8 @@
     <i class="bi bi-trash3"></i>
 </button>
 
+@props(['title' => 'Delete confirmation', 'body' => 'Are you sure you want to delete?'])
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
