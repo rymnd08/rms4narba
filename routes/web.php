@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -44,9 +45,15 @@ Route::middleware(['narba.auth'])->prefix('admin')->group(function(){
 
     Route::get('/', fn() => view('admin.dashboard.index'))->name('admin-dashboard');
 
-    // Narba admins 
-    Route::controller(NarbaAdminController::class)->group(function(){
-        Route::get('/narba-admin', 'index' )->name('narba-admin.index');
+    // Admin user route 
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/narba-admin', 'index')->name('narba-admin.index');
+        Route::get('/narba-admin/create', 'create')->name('narba-admin.create');
+        Route::post('/narba-admin', 'store')->name('narba-admin.store');
+        Route::get('/narba-admin/{admin}', 'show')->name('narba-admin.show');
+        Route::get('/narba-admin/{admin}/edit', 'edit')->name('narba-admin.edit');
+        Route::put('/narba-admin/{admin}', 'update')->name('narba-admin.update');
+        Route::delete('/narba-admin/{admin}', 'destroy')->name('narba-admin.destroy');
     });
 
     // Breed route 

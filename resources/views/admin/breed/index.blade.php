@@ -7,20 +7,18 @@
         <x-popup type="{{ session('type') }}" message="{{ session('message') }}" />
     @endif
 
-    <x-table cardHeader="Breeds">
+    <x-table>
 
-        <x-slot:cardHeader>
+        <x-slot:card_header>
             <a href="{{ route('breed.create') }}" class="btn btn-primary btn-sm"><i class="bi bi-plus"></i> Add</a>
-        </x-slot:cardHeader>
+        </x-slot:card_header>
 
-        <x-slot:tableHeaders>
+        <x-slot:table_header>
             <th>#</th>
             <th>Breed</th>
             <th>Description</th>
             <th>Action</th>
-        </x-slot:tableHeaders>
-
-        <x-slot:tableData>
+        </x-slot:table_header>
             @foreach ($breeds as $breed)
                 <tr>
                     <td>{{$loop->index + 1}}</td>
@@ -38,7 +36,6 @@
                     </td>
                 </tr>
             @endforeach
-        </x-slot:tableData>
     </x-table>
 
 @endsection

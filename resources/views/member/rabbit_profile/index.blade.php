@@ -9,10 +9,10 @@
 @endif
 
 <x-table>
-    <x-slot:cardHeader>
+    <x-slot:card_header>
         <a href="{{ route('rabbit-profile.create') }}" class="btn btn-primary btn-sm add-btn"><i class="bi bi-plus-lg"></i> Add </a>
-    </x-slot:cardHeader>
-    <x-slot:tableHeaders>
+    </x-slot:card_header>
+    <x-slot:table_header>
         <th>#</th>
         <th>Rabbit Code</th>
         <th>Rabbit Name</th>
@@ -20,8 +20,7 @@
         <th>Sex</th>
         <th>Image</th>
         <th>Actions</th>
-    </x-slot:tableHeaders>
-    <x-slot:tableData>
+    </x-slot:table_header>
         @foreach ($rabbitProfiles as $rp)
         <tr>
             <td>{{$loop->index+1}}</td>
@@ -48,6 +47,5 @@
             </td>
         </tr>
         @endforeach
-    </x-slot:tableData>
 </x-table>
 @endsection

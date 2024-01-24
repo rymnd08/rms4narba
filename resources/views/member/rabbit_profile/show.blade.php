@@ -28,7 +28,7 @@
                 <div class="tab-pane fade p-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="d-flex justify-content-start">
                         <div class="d-flex justify-content-center align-items-center flex-column" style="gap: 1rem;">
-                            <img class="rounded-pill" src="{{ asset("storage/rabbit_image/$rabbit->image") }}" alt="Rabbit Image" width=250 height=250 style="object-fit: cover" />
+                            <img class="rounded-pill" src="{{ $rabbit->image ? asset("storage/rabbit_image/$rabbit->image") : asset("img/rabbit_default.jpg") }}" alt="Rabbit Image" width=250 height=250 style="object-fit: cover" />
                             <x-update-image-modal>
                                 <form method="POST" action="{{ route("rabbit-profile.updateImage", ["id" => $rabbit->id, "img" => $rabbit->image]) }}" enctype="multipart/form-data">
                                     @csrf
