@@ -74,9 +74,7 @@
     </div>
     <!-- End of Page Wrapper -->
 
-
-    <!-- vite build -->
-    <!-- <script src="{{ asset('build/assets/app-c4c5988a.js') }}"></script> -->
+    @include('partials.shared.delete-script')
 
     <!-- Bootstrap core JavaScript -->
     @vite('resources/vendor/jquery/jquery.min.js')
@@ -100,7 +98,7 @@
     @vite('resources/js/demo/chart-area-demo.js')
     @vite('resources/js/demo/chart-pie-demo.js')
     @vite('resources/js/demo/chart-bar-demo.js')
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

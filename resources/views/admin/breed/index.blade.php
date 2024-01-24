@@ -22,25 +22,23 @@
 
         <x-slot:tableData>
             @foreach ($breeds as $breed)
-            <tr>
-                <td>{{$loop->index + 1}}</td>
-                <td>{{$breed->breed}}</td>
-                <td>{{ $breed->description }}</td>
-                <td>
-                    <button type="button" class="btn btn-sm btn-info">View</button>
-                    <a href="{{ route('breed.edit', ['id' => $breed->id]) }}" class="btn btn-outline-success btn-sm">Edit</a>
-                    <x-delete-modal>
-                        <form action="{{ route('breed.destroy', ['id' => $breed->id]) }}" method="POST" >
-                            @csrf
-                            @method('delete')
-
-                            <button type="submit" class="btn btn-danger">Yes</button>
-                        </form>
-                    </x-delete-modal>
-                </td>
-            </tr>
+                <tr>
+                    <td>{{$loop->index + 1}}</td>
+                    <td>{{$breed->breed}}</td>
+                    <td>{{ $breed->description }}</td>
+                    <td>
+                        <div class="d-flex flex-nowrap" style="gap: .25rem;">
+                            <a href="{{ route('breed.edit', ['id' => $breed->id]) }}" class="btn btn-outline-success btn-sm"> <x-icon.edit /> </a>
+                            <form action="{{ route('breed.destroy', ['id' => $breed->id]) }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-outline-danger btn-sm"><x-icon.delete /></button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
             @endforeach
         </x-slot:tableData>
-
     </x-table>
+
 @endsection

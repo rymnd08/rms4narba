@@ -24,7 +24,7 @@ class RabbitProfileFactory extends Factory
             'sex' => fake()->randomElement(['Buck', 'Doe']),
             'type_id' => fake()->randomElement([1,2]),
             'color' => fake()->randomElement(['Pink', 'Red']),
-            'breed_id' => fake()->numberBetween(1,10),
+            'breed_id' => fake()->numberBetween(1,2),
             'birthdate' => fake()->date('Y-m-d'),
             'image' =>  null,
             'description' => fake()->paragraph(1),

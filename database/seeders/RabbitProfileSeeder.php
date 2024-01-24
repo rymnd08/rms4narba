@@ -15,6 +15,6 @@ class RabbitProfileSeeder extends Seeder
      */
     public function run()
     {
-        RabbitProfile::factory(10)->create();
+        RabbitProfile::factory(20)->create();
     }
 }
