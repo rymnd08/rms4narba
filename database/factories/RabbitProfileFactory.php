@@ -17,7 +17,7 @@ class RabbitProfileFactory extends Factory
     public function definition()
     {
         return [
-            'farm_id' => fake()->randomElement([1,2]),
+            'farm_id' => 1,
             'rabbit_code' => fake()->randomLetter() .'-'. fake()->numberBetween(100, 1000),
             'rabbit_name' => fake()->name(),
             'cage_number' => fake()->numberBetween(1, 100),

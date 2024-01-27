@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class NarbaAuth
 {
-
     public function handle(Request $request, Closure $next)
     {
         if(!Auth::guard('admin')->check()){
-            return redirect()->route('narba-auth');
+            if (!$request->expectsJson()) {
+                return route('narba-login-page'); // Redirect to your admin login page
+            }
         }
 
         return $next($request);

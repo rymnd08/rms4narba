@@ -92,6 +92,7 @@
     @vite('resources/js/demo/chart-area-demo.js')
     @vite('resources/js/demo/chart-pie-demo.js')
     @vite('resources/js/demo/chart-bar-demo.js')
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

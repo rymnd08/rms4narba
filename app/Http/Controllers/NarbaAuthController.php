@@ -12,7 +12,7 @@ use Illuminate\Http\RedirectResponse;
 class NarbaAuthController extends Controller
 {
 
-    public function authenticate(Request $request): RedirectResponse
+    public function authenticate(Request $request) : RedirectResponse
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -22,9 +22,9 @@ class NarbaAuthController extends Controller
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
  
-            return redirect()->intended(route('admin-dashboard'));
+            return redirect()->route('admin-dashboard');
         }
- 
+        
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');

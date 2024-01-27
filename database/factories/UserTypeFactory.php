@@ -17,7 +17,7 @@ class UserTypeFactory extends Factory
     public function definition()
     {
         return [
-            'user_type' => fake()->unique()->randomElement(['SuperAdmin', 'Admin','User'])
+            // 'user_type' => fake()->unique()->randomElement(['SuperAdmin', 'Admin','User','Staff'])
         ];
     }
 }

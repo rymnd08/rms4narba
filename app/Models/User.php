@@ -21,6 +21,7 @@ class User extends Authenticatable
         'user_type_id',
         'email',
         'password',
+        'farm_id'
     ];
 
     /**

@@ -16,13 +16,13 @@ class AdminController extends Controller
 
     public function create()
     {
-        //
+        
     }
 
 
     public function store(StoreAdminRequest $request)
     {
-        //
+        
     }
 
     public function show(Admin $admin)

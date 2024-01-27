@@ -6,7 +6,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BreedController;
 use App\Http\Controllers\NarbaAuthController;
-use App\Http\Controllers\NarbaAdminController;
 use App\Http\Controllers\RabbitProfileController;
 
 /*
@@ -24,6 +23,7 @@ Route::get('/', fn() => redirect('member/'));
 
 // Member Authentication 
 Route::controller(AuthController::class)->group(function(){
+
     Route::get('/register', 'create')->name('register-page');
     Route::get('/login', 'login')->name('login-page');
     Route::post('/login', 'authenticate')->name('auth-login');
@@ -33,15 +33,19 @@ Route::controller(AuthController::class)->group(function(){
 
 // Narba authentication 
 Route::controller(NarbaAuthController::class)->group(function(){
-    Route::get('/n/register', fn() => view('pages.narba-register'))->name('narba-register-page');
-    Route::post('/n/register', 'store')->name('narba-register');
-    Route::get('/n/login', fn() => view('pages.narba-login'))->name('narba-login-page');
-    Route::post('/n/login', 'authenticate')->name('narba-auth');
-    Route::post('/n/logout', 'logout')->name('narba-logout');
+    
+    Route::prefix('n')->group(function () {
+        Route::get('/', fn() => redirect()->route('narba-login-page'));
+        Route::get('/register', fn() => view('pages.narba-register'))->name('narba-register-page');
+        Route::post('/register', 'store')->name('narba-register');
+        Route::get('/login', fn() => view('pages.narba-login'))->name('narba-login-page');
+        Route::post('/login', 'authenticate')->name('narba-auth');
+        Route::post('/logout', 'logout')->name('narba-logout');
+    });
 });
 
 // Admin route 
-Route::middleware(['narba.auth'])->prefix('admin')->group(function(){
+Route::prefix('admin')->group(function(){
 
     Route::get('/', fn() => view('admin.dashboard.index'))->name('admin-dashboard');
 
@@ -69,7 +73,7 @@ Route::middleware(['narba.auth'])->prefix('admin')->group(function(){
 });
 
 // Member route 
-Route::middleware('auth')->prefix('member')->group(function(){
+Route::group(['middleware' => 'auth', 'prefix' => 'member'], function(){
 
     Route::get('/', fn() => view('member.dashboard.index'))->name('member-dashboard');
 
@@ -85,7 +89,11 @@ Route::middleware('auth')->prefix('member')->group(function(){
         Route::put('/rabbit-profile/{id}/updateImage', 'updateImage')->name('rabbit-profile.updateImage');
     });
     
-    Route::controller(UserController::class)->group(fn() => Route::get('/user', 'index'));
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/user', 'index')->name('user.index');
+        Route::get('/user/create', 'create')->name('user.create');
+        Route::post('/user', 'store')->name('user.store');
+    });
 
 });
 

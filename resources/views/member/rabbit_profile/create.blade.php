@@ -178,7 +178,7 @@
             rabbit_breed.value = 1;
             rabbit_birthdate.value = '2022-01-01'
             cage_number.value = '1'
-            description.innerHTML = 'Kapeng mainit';
+            description.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, doloremque optio facilis nam sint autem blanditiis a maiores debitis mollitia quam error vel impedit repudiandae iusto? Deleniti quis incidunt dolorem.';
         })
 </script>
 

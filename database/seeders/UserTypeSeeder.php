@@ -14,8 +14,15 @@ class UserTypeSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        UserType::factory(3)->create();
-        
+    {   
+        // UserType::factory(4)->create();
+        $data = [
+            ['user_type' => 'SuperAdmin', 'created_at' => now(), 'updated_at' => now()],
+            ['user_type' => 'Admin', 'created_at' => now(), 'updated_at' => now()],
+            ['user_type' => 'User', 'created_at' => now(), 'updated_at' => now()],
+            ['user_type' => 'Staff', 'created_at' => now(), 'updated_at' => now()],
+        ];
+
+        UserType::insert($data);
     }
 }

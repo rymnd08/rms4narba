@@ -16,11 +16,13 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email',],
             'password' => ['required'],
+        ],[
+            'password.required' => "Password can't be empty."
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/member');
+            return redirect()->route('member-dashboard');
         }
 
         return back()->withErrors([
@@ -39,9 +41,11 @@ class AuthController extends Controller
     public function register(StoreUserRequest $request)
     {
         $request->merge(['user_type_id' => 1]);
+        $request->merge(['farm_id' => rand()]);
+
         $request['password'] = Hash::make($request->input('password'));
 
-        User::create($request->except(['password_confirmation', '_token']));
+        User::create($request->all());
 
         return redirect()->route('login-page')->with(['type' => 'success', 'message' => 'User created successfully!']);
     }

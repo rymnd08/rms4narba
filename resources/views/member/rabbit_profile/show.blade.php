@@ -35,7 +35,9 @@
                                     @method('put')
 
                                     <div class="d-flex justify-content-center align-items-center flex-column" style="gap: 1rem">
-                                        <div class="rp-img-container rounded-pill border"></div>
+                                        <div class="rp-img-container rounded-pill border">
+                                            <img src="{{ $rabbit->image ? asset("storage/rabbit_image/$rabbit->image") : asset("img/rabbit_default.jpg") }}" alt="" id="img">
+                                        </div>
                                         <div class="d-flex align-items-center" style="gap: .25rem">
                                             <input type="file" id="imgInput" onchange="previewFile()" class="form-control-file" name="photo">
                                             <button type="submit" class="btn btn-success">Apply</button>
@@ -50,12 +52,20 @@
         </div>
     </div>
 
+    @php
+        $data = asset("storage/rabbit_image/$rabbit->image");
+
+    @endphp
 
     <script>
         // const img = document.querySelector('#img')
+        const preview = document.querySelector("#img");
+            preview.style.objectFit = 'cover';
+            preview.style.height = '100%';
+            preview.style.width = '100%';
+
         function previewFile() {
             const imgContainer = document.querySelector('.rp-img-container')
-            // const preview = document.querySelector("#img");
             const file = document.querySelector("input[type=file]").files[0];
             const reader = new FileReader();
             imgContainer.innerHTML = '';

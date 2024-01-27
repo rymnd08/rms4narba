@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Breed;
 use Illuminate\Http\Request;
 use App\Models\RabbitProfile;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreRabbitProfileRequest;
 use App\Http\Requests\UpdateRabbitProfileRequest;
@@ -14,16 +16,13 @@ class RabbitProfileController extends Controller
 
     public function index()
     {
-        $data = RabbitProfile::all();
-        return view('member.rabbit_profile.index', ['rabbitProfiles' => $data]);
+        $rabbitProfiles = RabbitProfile::farmRabbitProfiles();
+        return view('member.rabbit_profile.index', compact('rabbitProfiles'));
     }
 
     public function show($id)
     {
-        // $id = request('id');
         $data = RabbitProfile::find($id);
-
-        if (!$data) return abort(404, 'No data found');
 
         return view('member.rabbit_profile.show', ['rabbit' => $data]);
     }
@@ -36,7 +35,7 @@ class RabbitProfileController extends Controller
 
     public function edit($id)
     {
-        $rabbitProfile = RabbitProfile::findOrFail($id);
+        $rabbitProfile = RabbitProfile::find($id);
 
         $breeds = Breed::all();
 
@@ -80,8 +79,9 @@ class RabbitProfileController extends Controller
             );
         }
         
-        $request->merge(['farm_id' => 1, 'image' => $newName]);
-        $create = RabbitProfile::create($request->all());
+        
+        $request->merge(['farm_id' => Auth::user()->farm_id, 'image' => $newName]);
+        $create = RabbitProfile::create($request->input());
 
         if ($create) {
             $message = 'Rabbit added successfully!';
