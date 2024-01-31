@@ -31,11 +31,15 @@
     <hr class="sidebar-divider">
 
     <!-- Routes  -->
-    <li class="nav-item {{ request()->is("member/user/*") || request()->is("member/user") ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route("user.index") }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Manage Users</span></a>
-    </li>
+    @auth
+        @if (auth()->user()->role === 'Member')
+            <li class="nav-item {{ request()->is("member/user/*") || request()->is("member/user") ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route("user.index") }}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Manage Users</span></a>
+            </li>
+        @endif
+    @endauth
 
     <li class="nav-item {{ request()->is("member/rabbit-profile/*") || request()->is("member/rabbit-profile") ? 'active' : '' }}">
         <a class="nav-link" href="{{ route("rabbit-profile") }}">

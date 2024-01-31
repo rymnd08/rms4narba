@@ -12,6 +12,7 @@
         <x-slot:card_header>
             <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary"><x-icon.plus/>Add</a>
         </x-slot:card_header>
+
         <x-slot:table_header>
             <th>#</th>
             <th>Email</th>
@@ -28,13 +29,15 @@
                 <td>{{ $user->updated_at }}</td>
                 <td>
                     <div class="d-flex flex-nowrap" style="gap: .25rem">
-                        <a href="#" class="btn btn-sm btn-outline-success"><x-icon.edit /></a>
-                        <a href="#" class="btn btn-sm btn-outline-danger"><x-icon.delete /></a>
+                        <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-outline-success"><x-icon.edit /></a>
+                        <form action="{{ route('user.destroy', ['id' => $user->id]) }}" class="delete-form" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-sm btn-outline-danger"><x-icon.delete /></button>
+                        </form>
                     </div>
                 </td>
             </tr>            
         @endforeach
-
     </x-table>
-
 @endsection

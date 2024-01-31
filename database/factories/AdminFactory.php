@@ -18,10 +18,10 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-            'user_type_id' => fake()->randomElement([1,2,3]),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => fake()->md5('123456'),
+            'role' => 'Admin',
             'remember_token' => Str::random(10),
         ];
     }

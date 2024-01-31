@@ -93,6 +93,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'member'], function(){
         Route::get('/user', 'index')->name('user.index');
         Route::get('/user/create', 'create')->name('user.create');
         Route::post('/user', 'store')->name('user.store');
+        Route::get('/user/{id}/edit', 'edit')->name('user.edit');
+        Route::put('/user/{id}', 'update')->name('user.update');
+        Route::delete('/user/{id}', 'destroy')->name('user.destroy');
     });
 
 });

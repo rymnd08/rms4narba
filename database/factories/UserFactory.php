@@ -14,8 +14,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'user_type_id' => fake()->randomElement([1,2,3]),
             'email' => fake()->unique()->safeEmail(),
+            'role' => 'Member',
             'farm_id' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('123123'),

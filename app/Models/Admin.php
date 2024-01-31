@@ -14,7 +14,4 @@ class Admin extends Authenticatable
     
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function userType(){
-        return Model::belongsTo(UserType::class);
-    }
 }

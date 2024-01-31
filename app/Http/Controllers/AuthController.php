@@ -40,9 +40,8 @@ class AuthController extends Controller
 
     public function register(StoreUserRequest $request)
     {
-        $request->merge(['user_type_id' => 1]);
+        $request->merge(['role' => 'Member']);
         $request->merge(['farm_id' => rand()]);
-
         $request['password'] = Hash::make($request->input('password'));
 
         User::create($request->all());
@@ -55,6 +54,7 @@ class AuthController extends Controller
     {
         return view('pages.login');
     }
+    
     public function create()
     {
         return view('pages.register');

@@ -4,8 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -18,10 +20,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_type_id',
         'email',
         'password',
-        'farm_id'
+        'farm_id',
+        'role'
     ];
 
     /**
@@ -43,8 +45,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function user_infos()
+    public function user_info() : hasOne
     {
         return $this->hasOne(UserInfo::class);
+    }
+
+    public static function farmUser()
+    {
+        return User::where('farm_id', Auth::user()->farm_id,)
+                    ->where('role' , '!=', 'Member')
+                    ->get();
     }
 }

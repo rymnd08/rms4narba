@@ -23,7 +23,10 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block" style="background: url('{{ asset("img/narba_login_rabbit.jpg") }}'); background-position: center; background-size: 110%;"></div>
+                            @php
+                                $path = asset("img/narba_login_rabbit.jpg");
+                            @endphp
+                            <div class="col-lg-6 d-none d-lg-block" style="background: url('{{ $path }}'); background-position: center; background-size: 110%;"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
 

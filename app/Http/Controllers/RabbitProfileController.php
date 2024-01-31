@@ -102,6 +102,7 @@ class RabbitProfileController extends Controller
         $request['breed_id'] = (int) $request->breed_id;
         $rabbit = RabbitProfile::find($id);
         $update = $rabbit->update($request->except(['_token', '_method']));
+        
         if ($update) {
             $type = 'success';
             $message = 'Rabbit was updated successfully!';
